@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>StreamFlix | Films</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+ 
+</head>
+<body class="page">
+
+  <div id="loader">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <i class="fas fa-film"></i>
+        StreamFlix
+      </div>
+      <p class="loader-text">Chargement du catalogue...</p>
+      <div class="loader-spinner"></div>
+    </div>
+  </div>
+
+  <header>
+    <a href="home.html" class="logo">
+      <i class="fas fa-film"></i>
+      StreamFlix
+    </a>
+    
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    
+    <nav>
+      <a href="home.html">Accueil</a>
+      <a href="films.html" class="active">Films</a>
+      <a href="series.html">Séries</a>
+    </nav>
+    
+    <div class="header-actions">
+      <div class="search-wrapper">
+        <input type="text" class="search-input" placeholder="Titres, genres...">
+        <button class="search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+
+      <div class="profile" id="profileBtn">
+        <div class="profile-img">?</div>
+        <i class="fas fa-chevron-down" style="margin-left: 8px; font-size: 12px;"></i>
+        
+        <div class="dropdown-menu" id="profileMenu">
+          <a href="#"><i class="fas fa-user"></i> Mon Compte</a>
+          <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
+          
+          <a href="index.html" style="color: #e50914; font-weight: bold;">
+            <i class="fas fa-sign-out-alt"></i> Déconnexion
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="trending" style="padding-top: 120px; min-height: 100vh;">
+    <div class="container">
+      <h2 class="section-title">Films</h2>
+      
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">Tout</button>
+        <button class="filter-btn" data-filter="action">Action</button>
+        <button class="filter-btn" data-filter="scifi">Sci-Fi</button>
+        <button class="filter-btn" data-filter="drame">Drame / Romance</button>
+        <button class="filter-btn" data-filter="animation">Animation</button>
+      </div>
+
+      <div class="movies-grid">
+        
+        <div class="movie-card" data-category="scifi">
+          <div class="movie-img-wrapper">
+            <img src="https://upload.wikimedia.org/wikipedia/en/d/d6/Avatar_%282009_film%29_poster.jpg" alt="Avatar" class="movie-img">
+            <div class="movie-badge">CULTE</div>
+            <div class="movie-overlay">
+              <a href="watch.html?id=avatar" class="play-btn movie-play-btn"><i class="fas fa-play"></i></a>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Avatar</h3>
+            <div class="movie-meta">
+              <span class="movie-rating"><i class="fas fa-star"></i> 7.9</span>
+              <span>Sci-Fi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-category="drame">
+          <div class="movie-img-wrapper">
+            <img src="https://upload.wikimedia.org/wikipedia/en/1/18/Titanic_%281997_film%29_poster.png" alt="Titanic" class="movie-img">
+            <div class="movie-badge">HD</div>
+            <div class="movie-overlay">
+              <a href="watch.html?id=titanic" class="play-btn movie-play-btn"><i class="fas fa-play"></i></a>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Titanic</h3>
+            <div class="movie-meta">
+              <span class="movie-rating"><i class="fas fa-star"></i> 8.9</span>
+              <span>Romance</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-category="action">
+          <div class="movie-img-wrapper">
+            <img src="https://upload.wikimedia.org/wikipedia/en/1/1c/The_Dark_Knight_%282008_film%29.jpg" alt="The Dark Knight" class="movie-img">
+            <div class="movie-badge">TOP 10</div>
+            <div class="movie-overlay">
+              <a href="watch.html?id=darkknight" class="play-btn movie-play-btn"><i class="fas fa-play"></i></a>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">The Dark Knight</h3>
+            <div class="movie-meta">
+              <span class="movie-rating"><i class="fas fa-star"></i> 9.0</span>
+              <span>Action</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-category="scifi">
+          <div class="movie-img-wrapper">
+            <img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg" alt="Inception" class="movie-img">
+            <div class="movie-badge">HD</div>
+            <div class="movie-overlay">
+              <a href="watch.html?id=inception" class="play-btn movie-play-btn"><i class="fas fa-play"></i></a>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Inception</h3>
+            <div class="movie-meta">
+              <span class="movie-rating"><i class="fas fa-star"></i> 8.8</span>
+              <span>Thriller/Sci-Fi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-category="drame">
+          <div class="movie-img-wrapper">
+            <img src="https://upload.wikimedia.org/wikipedia/en/e/e1/Joker_%282019_film%29_poster.jpg" alt="Joker" class="movie-img">
+            <div class="movie-badge">DRAME</div>
+            <div class="movie-overlay">
+              <a href="watch.html?id=joker" class="play-btn movie-play-btn"><i class="fas fa-play"></i></a>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Joker</h3>
+            <div class="movie-meta">
+              <span class="movie-rating"><i class="fas fa-star"></i> 8.4</span>
+              <span>Crime</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-category="action">
+          <div class="movie-img-wrapper">
+            <img src="https://upload.wikimedia.org/wikipedia/en/8/8a/The_Avengers_%282012_film%29_poster.jpg" alt="Avengers" class="movie-img">
+            <div class="movie-badge">MARVEL</div>
+            <div class="movie-overlay">
+              <a href="watch.html?id=avengers" class="play-btn movie-play-btn"><i class="fas fa-play"></i></a>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Avengers</h3>
+            <div class="movie-meta">
+              <span class="movie-rating"><i class="fas fa-star"></i> 8.0</span>
+              <span>Action</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="movie-card" data-category="scifi">
+          <div class="movie-img-wrapper">
+            <img src="https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg" alt="Interstellar" class="movie-img">
+            <div class="movie-badge">MUST SEE</div>
+            <div class="movie-overlay">
+              <a href="watch.html?id=interstellar" class="play-btn movie-play-btn"><i class="fas fa-play"></i></a>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Interstellar</h3>
+            <div class="movie-meta">
+              <span class="movie-rating"><i class="fas fa-star"></i> 8.7</span>
+              <span>Sci-Fi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card" data-category="animation">
+          <div class="movie-img-wrapper">
+            <img src="https://upload.wikimedia.org/wikipedia/en/3/3d/The_Lion_King_poster.jpg" alt="Lion King" class="movie-img">
+            <div class="movie-badge">FAMILLE</div>
+            <div class="movie-overlay">
+              <a href="watch.html?id=lionking" class="play-btn movie-play-btn"><i class="fas fa-play"></i></a>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">The Lion King</h3>
+            <div class="movie-meta">
+              <span class="movie-rating"><i class="fas fa-star"></i> 8.5</span>
+              <span>Animation</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <div class="footer-logo">StreamFlix</div>
+          <p class="footer-desc">
+            La plateforme de streaming leader. Films, séries, documentaires 
+            et bien plus encore.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-link">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h3 class="footer-title">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="home.html">Accueil</a></li>
+            <li><a href="films.html">Films</a></li>
+            <li><a href="series.html">Séries</a></li>
+          
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3 class="footer-title">Catégories</h3>
+          <ul class="footer-links">
+            <li><a href="action.html">Action</a></li>
+            <li><a href="comedie.html">Comédie</a></li>
+            <li><a href="drame.html">Drame</a></li>
+            <li><a href="scifi.html">Science-Fiction</a></li>
+    
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3 class="footer-title">Support</h3>
+          <ul class="footer-links">
+            <li><a href="contact1.html">Centre d'aide</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Conditions d'utilisation</a></li>
+            <li><a href="#">Confidentialité</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 StreamFlix. Tous droits réservés.</p>
+        <p>Ce site est un projet étudiant - Non commercial</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="projet.js"></script>
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>StreamFlix | Accueil - Films et Séries en Streaming</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="loader">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <i class="fas fa-film"></i>
+        StreamFlix
+      </div>
+      <p class="loader-text">Chargement de votre expérience cinéma...</p>
+      <div class="loader-spinner"></div>
+    </div>
+  </div>
+
+  <header>
+    <a href="home.html" class="logo">
+      <i class="fas fa-film"></i>
+      StreamFlix
+    </a>
+    
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    
+    <nav>
+      <a href="home.html" class="active">Accueil</a>
+      <a href="films.html">Films</a>
+      <a href="series.html">Séries</a>
+    </nav>
+    
+    <div class="header-actions">
+      <div class="search-wrapper">
+        <input type="text" class="search-input" placeholder="Titres, genres, acteurs...">
+        <button class="search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+
+      <button class="notifications-btn">
+        <i class="fas fa-bell"></i>
+      </button>
+
+      <div class="profile" id="profileBtn">
+        <div class="profile-img">?</div>
+        <i class="fas fa-chevron-down"></i>
+        
+        <div class="dropdown-menu" id="profileMenu">
+          <a href="#"><i class="fas fa-user"></i> Mon Compte</a>
+          <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
+          <a href="index.html" style="color: #e50914; font-weight: bold;">
+            <i class="fas fa-sign-out-alt"></i> Déconnexion
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container-fluid">
+      <div class="hero-content">
+        <span class="hero-tag">EXCLUSIVITÉ MONDIALE</span>
+        <h1 class="hero-title">PROJET<br>DERNIÈRE CHANCE</h1>
+        <p class="hero-subtitle">Il n'a pas de mémoire. Il n'a pas de choix. Il doit réussir.</p>
+        
+        <p class="hero-description">
+          Le Soleil est en train de s'éteindre mystérieusement,
+           menaçant d'anéantir toute vie sur Terre.
+           Ryland découvre qu'il est le dernier espoir de l'humanité.
+        </p>
+        
+        <div class="hero-buttons">
+          <a href="watch.html?id=hailmary" class="btn" id="watch-trailer">
+            <i class="fas fa-play"></i> Regarder la bande-annonce
+          </a>
+          <button class="btn btn-secondary" id="more-info">
+            <i class="fas fa-info-circle"></i> Plus d'infos
+          </button>
+        </div>
+        
+        <div class="hero-info">
+          <div class="info-item">
+            <i class="fas fa-calendar-alt"></i>
+            <span>Sortie : 20 mars 2026</span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-clock"></i>
+            <span>2h 28min</span>
+          </div>
+          <div class="info-item">
+            <i class="fas fa-tags"></i>
+            <span>Science-Fiction • Thriller • Drame</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured-movie">
+    <div class="container">
+      <h2 class="section-title">Film en Vedette</h2>
+      <p class="section-subtitle">Découvrez notre production exclusive du mois</p>
+      
+      <div class="featured-container">
+        <div class="movie-poster-special">
+          <img src="https://lumiere-a.akamaihd.net/v1/images/p_rayaandthelastdragon_21294_83346778.jpeg" alt="Raya et le Dernier Dragon">
+          
+          <div class="poster-overlay">
+            <div class="poster-content">
+              </div>
+          </div>
+        </div>
+        
+        <div class="movie-info-content">
+          <p class="movie-tag">Une épopée fantastique inspirée des cultures d'Asie du Sud-Est</p>
+          
+          <p class="movie-description">
+            Dans le royaume fantastique de Kumandra, un monde où humains et dragons vivaient autrefois en harmonie, 
+            Raya, une jeune guerrière solitaire, part à la recherche du dernier dragon pour restaurer la paix et 
+            l'unité dans une terre divisée. Sa quête la mènera à travers des paysages magnifiques où elle devra 
+            affronter des forces maléfiques et apprendre à faire confiance pour accomplir sa mission.
+          </p>
+          
+          <div class="movie-details">
+            <div class="detail-item">
+              <span class="detail-label">Sortie:</span>
+              <span class="detail-value">5 mars 2021</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Genre:</span>
+              <span class="detail-value">Animation, Aventure, Fantastique</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Durée:</span>
+              <span class="detail-value">1h 47min</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Réalisateurs:</span>
+              <span class="detail-value">Don Hall, Carlos López Estrada</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Note:</span>
+              <span class="detail-value">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+                7.3/10 (IMDb)
+              </span>
+            </div>
+          </div>
+          
+          <div class="movie-actions">
+            <a href="watch.html?id=raya" class="btn watch-now-btn">
+              <i class="fas fa-play"></i> Regarder maintenant
+            </a>
+            <button class="btn btn-secondary add-to-list-btn">
+              <i class="fas fa-plus"></i> Ma liste
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trending">
+    <div class="container">
+      <div class="trending-header">
+        <h2 class="section-title">Tendances du Moment</h2>
+        </div>
+      
+      <div class="slider-container">
+        <div class="slider">
+          <div class="slide">
+            <img src="https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1200_.jpg" alt="Avengers" class="slide-img">
+            <div class="slide-content">
+              <span class="slide-tag">N°1 AUJOURD'HUI</span>
+              <h3 class="slide-title">Avengers: Endgame</h3>
+              <p class="slide-desc">
+                Le chapitre final de la saga Infinity. Les Avengers doivent se réunir une dernière fois 
+                pour affronter Thanos et restaurer l'équilibre dans l'univers.
+              </p>
+              <a href="watch.html?id=avengers" class="btn watch-slide-btn">
+                <i class="fas fa-play"></i> Regarder maintenant
+              </a>
+            </div>
+          </div>
+          
+          <div class="slide">
+            <img src="https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_FMjpg_UX1200_.jpg" alt="Avatar 2" class="slide-img">
+            <div class="slide-content">
+              <span class="slide-tag">NOUVEAUTÉ</span>
+              <h3 class="slide-title">Avatar: Le Chemin de l'eau</h3>
+              <p class="slide-desc">
+                Jake Sully et Ney'tiri forment une famille et font tout pour rester ensemble. 
+                Cependant, ils doivent quitter leur foyer et explorer les différentes régions de Pandora.
+              </p>
+              <a href="watch.html?id=avatar2" class="btn watch-slide-btn">
+                <i class="fas fa-play"></i> Découvrir
+              </a>
+            </div>
+          </div>
+          
+          <div class="slide">
+            <img src="https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_FMjpg_UX1200_.jpg" alt="The Batman" class="slide-img">
+            <div class="slide-content">
+              <span class="slide-tag">POPULAIRE</span>
+              <h3 class="slide-title">The Batman</h3>
+              <p class="slide-desc">
+                Batman enquête sur la corruption à Gotham City alors qu'un tueur en série 
+                connu sous le nom de Riddler s'en prend à l'élite de la ville.
+              </p>
+              <a href="watch.html?id=batman" class="btn watch-slide-btn">
+                <i class="fas fa-play"></i> Regarder
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="slider-controls">
+          <button class="slider-btn prev-btn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="slider-btn next-btn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories">
+    <div class="container">
+      <h2 class="section-title">Parcourir par Catégorie</h2>
+      <p class="section-subtitle">Trouvez vos contenus préférés par genre</p>
+      
+      <div class="categories-grid">
+        <div class="category-card">
+          <img src="https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX800_.jpg" alt="Action" class="category-img">
+          <div class="category-content">
+            <h3 class="category-title">Action & Aventure</h3>
+            <p class="category-count">850+ films</p>
+          </div>
+        </div>
+        
+        <div class="category-card">
+          <img src="https://m.media-amazon.com/images/M/MV5BMTYzMDM4NzkxOV5BMl5BanBnXkFtZTgwNzM1Mzg2NzM@._V1_FMjpg_UX800_.jpg" alt="Comédie" class="category-img">
+          <div class="category-content">
+            <h3 class="category-title">Comédie</h3>
+            <p class="category-count">720+ films</p>
+          </div>
+        </div>
+        
+        <div class="category-card">
+          <img src="https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX800_.jpg" alt="Drame" class="category-img">
+          <div class="category-content">
+            <h3 class="category-title">Drame</h3>
+            <p class="category-count">950+ films</p>
+          </div>
+        </div>
+        
+        <div class="category-card">
+          <img src="https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX800_.jpg" alt="Sci-Fi" class="category-img">
+          <div class="category-content">
+            <h3 class="category-title">Science-Fiction</h3>
+            <p class="category-count">420+ films</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="popular-movies">
+    <div class="container">
+      <h2 class="section-title">Films les Plus Populaires</h2>
+      <p class="section-subtitle">Les films les plus regardés cette semaine</p>
+      
+      <div class="movies-grid">
+        <div class="movie-card">
+          <span class="movie-badge">TOP 1</span>
+          <img src="https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX300_.jpg" alt="Avengers" class="movie-img">
+          <div class="movie-overlay">
+            <a href="watch.html?id=avengers" class="play-btn movie-play-btn">
+              <i class="fas fa-play"></i>
+            </a>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Avengers: Endgame</h3>
+            <div class="movie-meta">
+              <span class="movie-year">2019</span>
+              <span class="movie-rating">
+                <i class="fas fa-star"></i> 8.4
+              </span>
+            </div>
+            <div class="movie-genres">
+              <span class="genre-tag">Action</span>
+              <span class="genre-tag">Aventure</span>
+              <span class="genre-tag">Sci-Fi</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="movie-card">
+          <span class="movie-badge">NOUVEAU</span>
+          <img src="https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_FMjpg_UX300_.jpg" alt="Avatar 2" class="movie-img">
+          <div class="movie-overlay">
+            <a href="watch.html?id=avatar2" class="play-btn movie-play-btn">
+              <i class="fas fa-play"></i>
+            </a>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Avatar: Le Chemin de l'eau</h3>
+            <div class="movie-meta">
+              <span class="movie-year">2022</span>
+              <span class="movie-rating">
+                <i class="fas fa-star"></i> 7.8
+              </span>
+            </div>
+            <div class="movie-genres">
+              <span class="genre-tag">Action</span>
+              <span class="genre-tag">Aventure</span>
+              <span class="genre-tag">Fantasy</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="movie-card">
+          <span class="movie-badge">POPULAIRE</span>
+          <img src="https://m.media-amazon.com/images/M/MV5BMDdmMTBiNTYtMDIzNi00NGVlLWIzMDYtZTk3MTQ3NGQxZGEwXkEyXkFqcGdeQXVyMzMwOTU5MDk@._V1_FMjpg_UX300_.jpg" alt="The Batman" class="movie-img">
+          <div class="movie-overlay">
+            <a href="watch.html?id=batman" class="play-btn movie-play-btn">
+              <i class="fas fa-play"></i>
+            </a>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">The Batman</h3>
+            <div class="movie-meta">
+              <span class="movie-year">2022</span>
+              <span class="movie-rating">
+                <i class="fas fa-star"></i> 7.8
+              </span>
+            </div>
+            <div class="movie-genres">
+              <span class="genre-tag">Action</span>
+              <span class="genre-tag">Crime</span>
+              <span class="genre-tag">Drame</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="movie-card">
+          <span class="movie-badge">EXCLUSIF</span>
+          <img src="https://m.media-amazon.com/images/M/MV5BNTM4NjIxNmEtYWE5NS00NDczLTkyNWQtYThhNmQyZGQzMjM0XkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_FMjpg_UX300_.jpg" alt="Black Panther 2" class="movie-img">
+          <div class="movie-overlay">
+            <a href="watch.html?id=blackpanther" class="play-btn movie-play-btn">
+              <i class="fas fa-play"></i>
+            </a>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Black Panther: Wakanda Forever</h3>
+            <div class="movie-meta">
+              <span class="movie-year">2022</span>
+              <span class="movie-rating">
+                <i class="fas fa-star"></i> 6.7
+              </span>
+            </div>
+            <div class="movie-genres">
+              <span class="genre-tag">Action</span>
+              <span class="genre-tag">Aventure</span>
+              <span class="genre-tag">Drame</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="movie-card">
+          <span class="movie-badge">TOP</span>
+          <img src="https://m.media-amazon.com/images/M/MV5BYTdiOTIyZTQtNmQ1OS00NjZlLWIyMTgtYzk5Y2M3ZDVmMDk1XkEyXkFqcGdeQXVyMTAzMDg4NzU0._V1_FMjpg_UX300_.jpg" alt="Everything Everywhere" class="movie-img">
+          <div class="movie-overlay">
+            <a href="watch.html?id=eeaao" class="play-btn movie-play-btn">
+              <i class="fas fa-play"></i>
+            </a>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Everything Everywhere All at Once</h3>
+            <div class="movie-meta">
+              <span class="movie-year">2022</span>
+              <span class="movie-rating">
+                <i class="fas fa-star"></i> 7.8
+              </span>
+            </div>
+            <div class="movie-genres">
+              <span class="genre-tag">Action</span>
+              <span class="genre-tag">Aventure</span>
+              <span class="genre-tag">Comédie</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="movie-card">
+          <span class="movie-badge">2023</span>
+          <img src="https://m.media-amazon.com/images/M/MV5BOTJhNzlmNzctNTU5Yy00N2YwLThhMjQtZDM0YjEzN2Y0ZjNhXkEyXkFqcGdeQXVyMTEwMTQ4MzU5._V1_FMjpg_UX300_.jpg" alt="Super Mario" class="movie-img">
+          <div class="movie-overlay">
+            <a href="watch.html?id=mario" class="play-btn movie-play-btn">
+              <i class="fas fa-play"></i>
+            </a>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Super Mario Bros.</h3>
+            <div class="movie-meta">
+              <span class="movie-year">2023</span>
+              <span class="movie-rating">
+                <i class="fas fa-star"></i> 7.0
+              </span>
+            </div>
+            <div class="movie-genres">
+              <span class="genre-tag">Animation</span>
+              <span class="genre-tag">Aventure</span>
+              <span class="genre-tag">Comédie</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="movie-card">
+          <span class="movie-badge">PRIMÉ</span>
+          <img src="https://m.media-amazon.com/images/M/MV5BMDBmYTZjNjUtN2M1MS00MTQ2LTk2ODgtNzc2M2QyZGE5NTVjXkEyXkFqcGdeQXVyNzAwMjU2MTY@._V1_FMjpg_UX300_.jpg" alt="Oppenheimer" class="movie-img">
+          <div class="movie-overlay">
+            <a href="watch.html?id=oppenheimer" class="play-btn movie-play-btn">
+              <i class="fas fa-play"></i>
+            </a>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Oppenheimer</h3>
+            <div class="movie-meta">
+              <span class="movie-year">2023</span>
+              <span class="movie-rating">
+                <i class="fas fa-star"></i> 8.3
+              </span>
+            </div>
+            <div class="movie-genres">
+              <span class="genre-tag">Biographie</span>
+              <span class="genre-tag">Drame</span>
+              <span class="genre-tag">Histoire</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="movie-card">
+          <span class="movie-badge">CLASSIQUE</span>
+          <img src="https://m.media-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_FMjpg_UX300_.jpg" alt="Star Wars" class="movie-img">
+          <div class="movie-overlay">
+            <a href="watch.html?id=starwars" class="play-btn movie-play-btn">
+              <i class="fas fa-play"></i>
+            </a>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Star Wars: Le Réveil de la Force</h3>
+            <div class="movie-meta">
+              <span class="movie-year">2015</span>
+              <span class="movie-rating">
+                <i class="fas fa-star"></i> 7.8
+              </span>
+            </div>
+            <div class="movie-genres">
+              <span class="genre-tag">Action</span>
+              <span class="genre-tag">Aventure</span>
+              <span class="genre-tag">Sci-Fi</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Pourquoi StreamFlix ?</h2>
+        <p class="cta-desc">
+          Rejoignez des millions de membres qui regardent déjà StreamFlix. 
+          Annulez à tout moment, aucun engagement.
+        </p>
+        
+        <div class="cta-features">
+          <div class="feature">
+            <div class="feature-icon">
+              <i class="fas fa-tv"></i>
+            </div>
+            <h3 class="feature-title">Regardez Partout</h3>
+            <p class="feature-text">Streaming sur TV, ordinateur, mobile et tablette</p>
+          </div>
+          
+          <div class="feature">
+            <div class="feature-icon">
+              <i class="fas fa-download"></i>
+            </div>
+            <h3 class="feature-title">Téléchargez</h3>
+            <p class="feature-text">Regardez hors ligne, où que vous soyez</p>
+          </div>
+          
+          <div class="feature">
+            <div class="feature-icon">
+              <i class="fas fa-user-friends"></i>
+            </div>
+            <h3 class="feature-title">Profils Illimités</h3>
+            <p class="feature-text">Créez des profils pour toute la famille</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <div class="footer-logo">StreamFlix</div>
+          <p class="footer-desc">
+            La plateforme de streaming leader. Films, séries, documentaires 
+            et bien plus encore.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-link">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h3 class="footer-title">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="home.html">Accueil</a></li>
+            <li><a href="films.html">Films</a></li>
+            <li><a href="series.html">Séries</a></li>
+          
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3 class="footer-title">Catégories</h3>
+          <ul class="footer-links">
+            <li><a href="action.html">Action</a></li>
+            <li><a href="comedie.html">Comédie</a></li>
+            <li><a href="drame.html">Drame</a></li>
+            <li><a href="scifi.html">Science-Fiction</a></li>
+    
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3 class="footer-title">Support</h3>
+          <ul class="footer-links">
+            <li><a href="contact1.html">Centre d'aide</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Conditions d'utilisation</a></li>
+            <li><a href="#">Confidentialité</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 StreamFlix. Tous droits réservés.</p>
+        <p>Ce site est un projet étudiant - Non commercial</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="projet.js"></script>
+  
+</body>
+</html>

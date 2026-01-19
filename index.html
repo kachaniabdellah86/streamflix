@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>StreamFlix | Connexion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+   
+    .auth-body {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://assets.nflxext.com/ffe/siteui/vlv3/f841d4c7-10e1-40af-bcae-07a3f8dc141a/f6d7434e-d6de-4185-a6d4-c77a2d08737b/US-en-20220502-popsignuptwoweeks-perspective_alpha_website_medium.jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .auth-header {
+      padding: 20px 40px;
+    }
+    .auth-container {
+      margin: auto;
+      background: rgba(0, 0, 0, 0.75);
+      padding: 60px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 450px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .auth-title {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 25px;
+      color: white;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 16px;
+      border-radius: 4px;
+      background: #333;
+      border: none;
+      color: white;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    .submit-btn {
+      width: 100%;
+      background: #e50914;
+      color: white;
+      padding: 16px;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+    .submit-btn:hover { background: #b20710; }
+    .auth-footer {
+      margin-top: 20px;
+      color: #b3b3b3;
+      font-size: 16px;
+    }
+    .auth-footer a {
+      color: white;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+    .auth-footer a:hover { text-decoration: underline; }
+    .hidden { display: none; }
+
+    #error-message {
+      display: none;
+      background-color: #e87c03;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body class="auth-body">
+
+  <header class="auth-header">
+    <a href="#" class="logo" style="font-size: 30px; text-decoration: none; color: #e50914; font-weight: bold;">
+      STREAMFLIX
+    </a>
+  </header>
+
+  <div class="auth-container">
+    
+    <div id="login-form">
+      <h2 class="auth-title">S'identifier</h2>
+      
+      <div id="error-message">Mot de passe incorrect. Veuillez réessayer.</div>
+
+      <form onsubmit="checkCredentials(event)">
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Email ou téléphone" required>
+        </div>
+        <div class="form-group">
+          <input type="password" id="password" placeholder="Mot de passe" required>
+        </div>
+        <button type="submit" class="submit-btn">S'identifier</button>
+      </form>
+
+      <div class="auth-footer">
+        Première visite sur StreamFlix ? <a onclick="toggleForms()">Inscrivez-vous.</a>
+      </div>
+    </div>
+
+    <div id="register-form" class="hidden">
+      <h2 class="auth-title">Créer un compte</h2>
+      <form onsubmit="event.preventDefault(); window.location.href='home.html';">
+        <div class="form-group"><input type="text" placeholder="Nom d'utilisateur" required></div>
+        <div class="form-group"><input type="email" placeholder="Email" required></div>
+        <div class="form-group"><input type="password" placeholder="Mot de passe" required></div>
+        <button type="submit" class="submit-btn">Commencer</button>
+      </form>
+      <div class="auth-footer">
+        Déjà abonné ? <a onclick="toggleForms()">S'identifier.</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function toggleForms() {
+      const registerForm = document.getElementById('register-form');
+      const loginForm = document.getElementById('login-form');
+      const errorMsg = document.getElementById('error-message');
+      
+     
+      errorMsg.style.display = 'none';
+
+      if (registerForm.classList.contains('hidden')) {
+        registerForm.classList.remove('hidden');
+        loginForm.classList.add('hidden');
+      } else {
+        registerForm.classList.add('hidden');
+        loginForm.classList.remove('hidden');
+      }
+    }
+
+    
+    function checkCredentials(event) {
+      event.preventDefault(); 
+      const emailInput = document.getElementById('email').value;
+      const passwordInput = document.getElementById('password').value;
+      const errorMsg = document.getElementById('error-message');
+
+      
+      if (emailInput === "streamflix@admin.ma" && passwordInput === "devweb") {
+        window.location.href = 'home.html';
+      } else {
+        errorMsg.style.display = 'block';
+        errorMsg.textContent = "Email ou mot de passe incorrect.";
+      }
+    }
+  </script>
+</body>
+</html>

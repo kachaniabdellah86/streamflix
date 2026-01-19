@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>StreamFlix | Séries</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page">
+
+  <div id="loader">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <i class="fas fa-film"></i>
+        StreamFlix
+      </div>
+      <p class="loader-text">Chargement des séries...</p>
+      <div class="loader-spinner"></div>
+    </div>
+  </div>
+
+  <header>
+    <a href="home.html" class="logo">
+      <i class="fas fa-film"></i>
+      StreamFlix
+    </a>
+    
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    
+    <nav>
+      <a href="home.html">Accueil</a>
+      <a href="films.html">Films</a>
+      <a href="series.html" class="active">Séries</a>
+    </nav>
+    
+    <div class="header-actions">
+      <div class="search-wrapper">
+        <input type="text" class="search-input" placeholder="Titres, genres...">
+        <button class="search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+
+      <div class="profile" id="profileBtn">
+        <div class="profile-img">?</div>
+        <i class="fas fa-chevron-down" style="margin-left: 8px; font-size: 12px;"></i>
+        
+        <div class="dropdown-menu" id="profileMenu">
+          <a href="#"><i class="fas fa-user"></i> Mon Compte</a>
+          <a href="parametres.html"><i class="fas fa-cog"></i> Paramètres</a>
+          <a href="index.html" style="color: #e50914; font-weight: bold;">
+            <i class="fas fa-sign-out-alt"></i> Déconnexion
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="trending" style="padding-top: 120px; min-height: 100vh;">
+    <div class="container">
+      <h2 class="section-title">Séries TV</h2>
+      <p class="section-subtitle">Binge-watchez vos séries préférées sans limite</p>
+
+      <div class="movies-grid">
+        
+        <div class="movie-card">
+          <div class="movie-img-wrapper">
+            <img src="https://m.media-amazon.com/images/M/MV5BMDZkYmVhNjMtNWU4MC00MDQxLWE3MjYtZGMzZWI1ZjhlOWJmXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_FMjpg_UX1000_.jpg" 
+                 alt="Stranger Things" 
+                 class="movie-img">
+            <div class="movie-badge">NOUVEAU</div>
+            <div class="movie-overlay">
+              <a href="watch.html?id=strangerthings" class="play-btn movie-play-btn"><i class="fas fa-play"></i></a>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Stranger Things</h3>
+            <div class="movie-meta">
+              <span class="movie-rating"><i class="fas fa-star"></i> 8.7</span>
+              <span>4 Saisons</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="movie-img-wrapper">
+            <img src="https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGZmMi00NDI5LTgxMzMtN2EzZjA1NjhlOGMxXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_FMjpg_UX1000_.jpg" 
+                 alt="Game of Thrones" 
+                 class="movie-img">
+            <div class="movie-badge">HD</div>
+            <div class="movie-overlay">
+              <a href="watch.html?id=got" class="play-btn movie-play-btn"><i class="fas fa-play"></i></a>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Game of Thrones</h3>
+            <div class="movie-meta">
+              <span class="movie-rating"><i class="fas fa-star"></i> 9.2</span>
+              <span>8 Saisons</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="movie-img-wrapper">
+            <img src="https://lumiere-a.akamaihd.net/v1/images/image_09049f79.jpeg" 
+                 alt="The Mandalorian" 
+                 class="movie-img">
+            <div class="movie-badge">POPULAIRE</div>
+            <div class="movie-overlay">
+              <a href="watch.html?id=mandalorian" class="play-btn movie-play-btn"><i class="fas fa-play"></i></a>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">The Mandalorian</h3>
+            <div class="movie-meta">
+              <span class="movie-rating"><i class="fas fa-star"></i> 8.7</span>
+              <span>3 Saisons</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="movie-img-wrapper">
+            <img src="https://imgs.search.brave.com/VACAhGxjctOsQXpWjoSf3k7w2oa78s6AGMwFigrcCDE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL00v/TVY1Qk16VTVaR1l6/Tm1RdE1UZGhZeTAw/T0dSaUxUZzBObVF0/WWpWak56bGlaVGcx/WkdFNFhrRXlYa0Zx/Y0djQC5qcGc" 
+                 alt="Breaking Bad" 
+                 class="movie-img">
+            <div class="movie-badge">MUST WATCH</div>
+            <div class="movie-overlay">
+              <a href="watch.html?id=breakingbad" class="play-btn movie-play-btn"><i class="fas fa-play"></i></a>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Breaking Bad</h3>
+            <div class="movie-meta">
+              <span class="movie-rating"><i class="fas fa-star"></i> 9.5</span>
+              <span>5 Saisons</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="movie-img-wrapper">
+            <img src="https://m.media-amazon.com/images/M/MV5BZGUzYTI3M2EtZmM0Yy00NGUyLWI4ODEtN2Q3ZGJlYzhhZjU3XkEyXkFqcGdeQXVyNTM0OTY1OQ@@._V1_FMjpg_UX1000_.jpg" 
+                 alt="The Last of Us" 
+                 class="movie-img">
+            <div class="movie-badge">2023</div>
+            <div class="movie-overlay">
+              <a href="watch.html?id=lastofus" class="play-btn movie-play-btn"><i class="fas fa-play"></i></a>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">The Last of Us</h3>
+            <div class="movie-meta">
+              <span class="movie-rating"><i class="fas fa-star"></i> 9.1</span>
+              <span>1 Saison</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="movie-img-wrapper">
+            <img src="https://imgs.search.brave.com/xngbgJc60c6GBBTV_1JYB1fALPwmjhj3jRauG8_YNCY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL00v/TVY1Qk1UTXhNV001/TnpFdFpXTTVNeTAw/WkdZNExXSTNPRGN0/TVRKaVl6WXlOVFF3/WVRFd1hrRXlYa0Zx/Y0djQC5qcGc" 
+                 alt="Walking Dead" 
+                 class="movie-img">
+            <div class="movie-badge">HIT</div>
+            <div class="movie-overlay">
+              <a href="watch.html?id=walkingdead" class="play-btn movie-play-btn"><i class="fas fa-play"></i></a>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">The Walking Dead</h3>
+            <div class="movie-meta">
+              <span class="movie-rating"><i class="fas fa-star"></i> 8.2</span>
+              <span>11 Saisons</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="movie-img-wrapper">
+            <img src="https://imgs.search.brave.com/it7MYtFj_LUNqIA30An1SJ9n6vi7W54KkuJ4251tgRY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9kbm0u/bmZseGltZy5uZXQv/YXBpL3Y2LzJEdVFs/eDBmTTR3ZDFuenFt/NUJGQmk2SUxhOC9B/QUFBUVRESV9iTXRq/RzVGTXJtSzdUaWxG/ZjgwMDBScy1kWWtT/azYxVjZzSkJLeUdp/RDNkQ3c1QmJVYlA0/bkZ3dG91LXlMVkNm/RHlxcmdCUk9CTEtk/dWMxNzZaN2h1eUkw/WGg5Yk1TeVVfX3o0/Ym1qcDM1RmhDWngt/bGpTN1Ria2d3SXV3/LVllS3drRU1pSVV3/U0x0azF1Tm1ody0u/anBnP3I9MTAx" 
+                 alt="Squid Game" 
+                 class="movie-img">
+            <div class="movie-badge">VIRAL</div>
+            <div class="movie-overlay">
+              <a href="watch.html?id=squidgame" class="play-btn movie-play-btn"><i class="fas fa-play"></i></a>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Squid Game</h3>
+            <div class="movie-meta">
+              <span class="movie-rating"><i class="fas fa-star"></i> 8.0</span>
+              <span>1 Saison</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="movie-card">
+          <div class="movie-img-wrapper">
+            <img src="https://imgs.search.brave.com/f2tLupseREe7Kl1r04VDxpyJXw1LFMGNhXm8RTILVY4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzBiL2Ix/LzZkLzBiYjE2ZDZl/OTI3ZTdkM2VlMGI4/YjZhZTJiMGQyZjRh/LmpwZw" 
+                 alt="Peaky Blinders" 
+                 class="movie-img">
+            <div class="movie-badge">UK</div>
+            <div class="movie-overlay">
+              <a href="watch.html?id=peakyblinders" class="play-btn movie-play-btn"><i class="fas fa-play"></i></a>
+            </div>
+          </div>
+          <div class="movie-info">
+            <h3 class="movie-name">Peaky Blinders</h3>
+            <div class="movie-meta">
+              <span class="movie-rating"><i class="fas fa-star"></i> 8.8</span>
+              <span>6 Saisons</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <div class="footer-logo">StreamFlix</div>
+          <p class="footer-desc">
+            La plateforme de streaming leader. Films, séries, documentaires 
+            et bien plus encore.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h3 class="footer-title">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="home.html">Accueil</a></li>
+            <li><a href="films.html">Films</a></li>
+            <li><a href="series.html">Séries</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3 class="footer-title">Catégories</h3>
+          <ul class="footer-links">
+            <li><a href="action.html">Action</a></li>
+            <li><a href="comedie.html">Comédie</a></li>
+            <li><a href="drame.html">Drame</a></li>
+            <li><a href="scifi.html">Science-Fiction</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3 class="footer-title">Support</h3>
+          <ul class="footer-links">
+            <li><a href="contact1.html">Centre d'aide</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Conditions d'utilisation</a></li>
+            <li><a href="#">Confidentialité</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 StreamFlix. Tous droits réservés.</p>
+        <p>Ce site est un projet étudiant - Non commercial</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="projet.js"></script>
+</body>
+</html>

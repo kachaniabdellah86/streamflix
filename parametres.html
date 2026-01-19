@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>StreamFlix | Paramètres</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .settings-section {
+      padding: 140px 0 80px;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+    }
+
+    .settings-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .settings-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .settings-header h1 {
+      font-size: 42px;
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    .settings-header p {
+      color: #b3b3b3;
+      font-size: 18px;
+    }
+
+    .settings-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+
+    .settings-tab {
+      padding: 15px 25px;
+      background: rgba(40, 40, 40, 0.6);
+      border: none;
+      color: #b3b3b3;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+
+    .settings-tab:hover {
+      background: rgba(229, 9, 20, 0.1);
+      color: white;
+    }
+
+    .settings-tab.active {
+      background: #e50914;
+      color: white;
+    }
+
+    .settings-content {
+      background: rgba(30, 30, 30, 0.8);
+      border-radius: 15px;
+      padding: 40px;
+      border-left: 5px solid #e50914;
+    }
+
+    .settings-group {
+      margin-bottom: 40px;
+    }
+
+    .settings-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .settings-group h2 {
+      font-size: 24px;
+      color: white;
+      margin-bottom: 25px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #333;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .settings-group h2 i {
+      color: #e50914;
+    }
+
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: rgba(40, 40, 40, 0.6);
+      border-radius: 8px;
+      margin-bottom: 15px;
+      transition: background 0.3s;
+    }
+
+    .setting-item:hover {
+      background: rgba(50, 50, 50, 0.8);
+    }
+
+    .setting-info {
+      flex: 1;
+    }
+
+    .setting-title {
+      font-size: 18px;
+      color: white;
+      margin-bottom: 5px;
+    }
+
+    .setting-desc {
+      font-size: 14px;
+      color: #b3b3b3;
+    }
+
+    .setting-control {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* Switch toggle */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #444;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 22px;
+      width: 22px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: #e50914;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(30px);
+    }
+
+    /* Select dropdown */
+    .setting-select {
+      padding: 10px 15px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid #444;
+      border-radius: 6px;
+      color: white;
+      font-size: 14px;
+      min-width: 150px;
+      cursor: pointer;
+    }
+
+    /* Color picker */
+    .color-options {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .color-option {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: all 0.3s;
+    }
+
+    .color-option:hover {
+      transform: scale(1.1);
+    }
+
+    .color-option.active {
+      border-color: white;
+    }
+
+    /* Progress bar */
+    .storage-info {
+      width: 100%;
+    }
+
+    .storage-bar {
+      width: 100%;
+      height: 10px;
+      background: #333;
+      border-radius: 5px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+
+    .storage-progress {
+      height: 100%;
+      background: linear-gradient(90deg, #e50914, #ff6b6b);
+      border-radius: 5px;
+    }
+
+    .storage-text {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #b3b3b3;
+    }
+
+    /* Quality selector */
+    .quality-options {
+      display: flex;
+      gap: 15px;
+    }
+
+    .quality-btn {
+      padding: 10px 20px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid #444;
+      border-radius: 6px;
+      color: #b3b3b3;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .quality-btn:hover,
+    .quality-btn.active {
+      background: #e50914;
+      color: white;
+      border-color: #e50914;
+    }
+
+    /* Save button */
+    .save-settings {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid #333;
+    }
+
+    .save-btn {
+      background: #e50914;
+      color: white;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .save-btn:hover {
+      background: #ff0a16;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(229, 9, 20, 0.4);
+    }
+
+    .notification {
+      display: none;
+      background: rgba(76, 175, 80, 0.1);
+      border: 1px solid #4CAF50;
+      color: #4CAF50;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .notification.show {
+      display: block;
+      animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .settings-tabs {
+        flex-wrap: wrap;
+      }
+      
+      .setting-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+      }
+      
+      .setting-control {
+        width: 100%;
+        justify-content: space-between;
+      }
+      
+      .settings-content {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body class="page">
+
+  <div id="loader">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <i class="fas fa-film"></i>
+        StreamFlix
+      </div>
+      <p class="loader-text">Chargement des paramètres...</p>
+      <div class="loader-spinner"></div>
+    </div>
+  </div>
+
+  <header>
+    <a href="home.html" class="logo">
+      <i class="fas fa-film"></i>
+      StreamFlix
+    </a>
+    
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    
+    <nav>
+      <a href="home.html">Accueil</a>
+      <a href="films.html">Films</a>
+      <a href="series.html">Séries</a>
+      <a href="contact-us.html">Contact</a>
+    </nav>
+    
+    <div class="header-actions">
+      <div class="search-wrapper">
+        <input type="text" class="search-input" placeholder="Titres, genres...">
+        <button class="search-btn">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+
+      <div class="profile" id="profileBtn">
+        <div class="profile-img">?</div>
+        <i class="fas fa-chevron-down" style="margin-left: 8px; font-size: 12px;"></i>
+        <div class="dropdown-menu" id="profileMenu">
+          <a href="profil.html"><i class="fas fa-user"></i> Mon Compte</a>
+          <a href="parametres.html" class="active"><i class="fas fa-cog"></i> Paramètres</a>
+          <a href="index.html" style="color: #e50914; font-weight: bold;">
+            <i class="fas fa-sign-out-alt"></i> Déconnexion
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="settings-section">
+    <div class="settings-container">
+      <div class="settings-header">
+        <h1><i class="fas fa-cog"></i> Paramètres</h1>
+        <p>Personnalisez votre expérience StreamFlix selon vos préférences</p>
+      </div>
+
+      <div class="settings-tabs">
+        <button class="settings-tab active" onclick="showTab('general')">
+          <i class="fas fa-sliders-h"></i> Général
+        </button>
+        <button class="settings-tab" onclick="showTab('playback')">
+          <i class="fas fa-play-circle"></i> Lecture
+        </button>
+        <button class="settings-tab" onclick="showTab('notifications')">
+          <i class="fas fa-bell"></i> Notifications
+        </button>
+        <button class="settings-tab" onclick="showTab('privacy')">
+          <i class="fas fa-shield-alt"></i> Confidentialité
+        </button>
+      </div>
+
+      <div class="settings-content">
+        <!-- Onglet Général -->
+        <div id="general-tab" class="settings-tab-content">
+          <div class="settings-group">
+            <h2><i class="fas fa-palette"></i> Apparence</h2>
+            
+            <div class="setting-item">
+              <div class="setting-info">
+                <div class="setting-title">Mode sombre</div>
+                <div class="setting-desc">Activer le mode sombre pour une meilleure expérience de visionnage nocturne</div>
+              </div>
+              <div class="setting-control">
+                <label class="switch">
+                  <input type="checkbox" id="darkMode" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <div class="setting-title">Langue de l'interface</div>
+                <div class="setting-desc">Choisissez la langue d'affichage de l'application</div>
+              </div>
+              <div class="setting-control">
+                <select class="setting-select" id="language">
+                  <option value="fr">Français</option>
+                  <option value="en">English</option>
+                  <option value="es">Español</option>
+                  <option value="de">Deutsch</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <div class="setting-title">Couleur d'accent</div>
+                <div class="setting-desc">Personnalisez la couleur principale de l'interface</div>
+              </div>
+              
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <h2><i class="fas fa-download"></i> Téléchargements</h2>
+            
+            <div class="setting-item">
+              <div class="setting-info">
+                <div class="setting-title">Qualité des téléchargements</div>
+                <div class="setting-desc">Choisissez la qualité des contenus téléchargés</div>
+              </div>
+              <div class="setting-control">
+                <select class="setting-select" id="downloadQuality">
+                  <option value="auto">Automatique</option>
+                  <option value="high">Haute (HD)</option>
+                  <option value="medium">Moyenne (720p)</option>
+                  <option value="low">Basse (480p)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <div class="setting-title">Espace de stockage</div>
+                <div class="setting-desc">Gérez l'espace utilisé par les téléchargements</div>
+              </div>
+              <div class="setting-control">
+                <div class="storage-info">
+                  <div class="storage-bar">
+                    <div class="storage-progress" style="width: 65%"></div>
+                  </div>
+                  <div class="storage-text">
+                    <span>12.4 Go utilisés</span>
+                    <span>65%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Onglet Lecture -->
+        <div id="playback-tab" class="settings-tab-content" style="display: none;">
+          <div class="settings-group">
+            <h2><i class="fas fa-video"></i> Qualité vidéo</h2>
+            
+            <div class="setting-item">
+              <div class="setting-info">
+                <div class="setting-title">Qualité de lecture automatique</div>
+                <div class="setting-desc">La qualité s'adapte automatiquement à votre connexion</div>
+              </div>
+              <div class="setting-control">
+                <label class="switch">
+                  <input type="checkbox" id="autoQuality" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <div class="setting-title">Qualité par défaut</div>
+                <div class="setting-desc">Choisissez la qualité de lecture par défaut</div>
+              </div>
+              <div class="setting-control">
+                <div class="quality-options">
+                  <button class="quality-btn" onclick="selectQuality('auto')">Auto</button>
+                  <button class="quality-btn active" onclick="selectQuality('4k')">4K</button>
+                  <button class="quality-btn" onclick="selectQuality('1080p')">1080p</button>
+                  <button class="quality-btn" onclick="selectQuality('720p')">720p</button>
+                  <button class="quality-btn" onclick="selectQuality('480p')">480p</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <h2><i class="fas fa-film"></i> Contrôles de lecture</h2>
+            
+            <div class="setting-item">
+              <div class="setting-info">
+                <div class="setting-title">Lecture automatique</div>
+                <div class="setting-desc">Lancer automatiquement le prochain épisode</div>
+              </div>
+              <div class="setting-control">
+                <label class="switch">
+                  <input type="checkbox" id="autoPlay" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <div class="setting-title">Prévisualisations automatiques</div>
+                <div class="setting-desc">Afficher les bandes-annonces automatiquement</div>
+              </div>
+              <div class="setting-control">
+                <label class="switch">
+                  <input type="checkbox" id="autoPreview">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <div class="setting-title">Sous-titres par défaut</div>
+                <div class="setting-desc">Activer les sous-titres automatiquement</div>
+              </div>
+              <div class="setting-control">
+                <label class="switch">
+                  <input type="checkbox" id="autoSubtitles">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Onglet Notifications -->
+        <div id="notifications-tab" class="settings-tab-content" style="display: none;">
+          <div class="settings-group">
+            <h2><i class="fas fa-envelope"></i> Notifications par email</h2>
+            
+            <div class="setting-item">
+              <div class="setting-info">
+                <div class="setting-title">Nouveaux contenus</div>
+                <div class="setting-desc">Recevoir des notifications pour les nouveaux films et séries</div>
+              </div>
+              <div class="setting-control">
+                <label class="switch">
+                  <input type="checkbox" id="emailNewContent" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <div class="setting-title">Newsletter</div>
+                <div class="setting-desc">Recevoir la newsletter hebdomadaire</div>
+              </div>
+              <div class="setting-control">
+                <label class="switch">
+                  <input type="checkbox" id="emailNewsletter">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <div class="setting-title">Offres spéciales</div>
+                <div class="setting-desc">Recevoir des offres promotionnelles</div>
+              </div>
+              <div class="setting-control">
+                <label class="switch">
+                  <input type="checkbox" id="emailOffers">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-group">
+            <h2><i class="fas fa-bell"></i> Notifications push</h2>
+            
+            <div class="setting-item">
+              <div class="setting-info">
+                <div class="setting-title">Nouveaux épisodes</div>
+                <div class="setting-desc">Notifications pour les nouveaux épisodes de vos séries</div>
+              </div>
+              <div class="setting-control">
+                <label class="switch">
+                  <input type="checkbox" id="pushNewEpisodes" checked>
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <div class="setting-title">Rappels de visionnage</div>
+                <div class="setting-desc">Rappeler de continuer vos séries en cours</div>
+              </div>
+              <div class="setting-control">
+                <label class="switch">
+                  <input type="checkbox" id="pushReminders">
+                  <span class="slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Autres onglets similaires... -->
+
+        <div class="save-settings">
+          <button class="save-btn" onclick="saveSettings()">
+            <i class="fas fa-save"></i> Enregistrer les modifications
+          </button>
+          <div class="notification" id="saveNotification">
+            <i class="fas fa-check-circle"></i> Paramètres enregistrés avec succès !
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-col">
+          <div class="footer-logo">StreamFlix</div>
+          <p class="footer-desc">
+            La plateforme de streaming leader. Films, séries, documentaires 
+            et bien plus encore.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-link">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link">
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h3 class="footer-title">Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="home.html">Accueil</a></li>
+            <li><a href="films.html">Films</a></li>
+            <li><a href="series.html">Séries</a></li>
+            <li><a href="contact1.html">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3 class="footer-title">Catégories</h3>
+          <ul class="footer-links">
+            <li><a href="action.html">Action</a></li>
+            <li><a href="comedie.html">Comédie</a></li>
+            <li><a href="drame.html">Drame</a></li>
+            <li><a href="scifi.html">Science-Fiction</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3 class="footer-title">Support</h3>
+          <ul class="footer-links">
+            <li><a href="contact-us.html">Centre d'aide</a></li>
+            <li><a href="contact-us.html">FAQ</a></li>
+            <li><a href="#">Conditions d'utilisation</a></li>
+            <li><a href="#">Confidentialité</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 StreamFlix. Tous droits réservés.</p>
+        <p>Ce site est un projet étudiant - Non commercial</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="projet.js"></script>
+  
+  <script>
+    // Gestion des onglets
+    function showTab(tabName) {
+      // Cacher tous les onglets
+      document.querySelectorAll('.settings-tab-content').forEach(tab => {
+        tab.style.display = 'none';
+      });
+      
+      // Désactiver tous les boutons d'onglets
+      document.querySelectorAll('.settings-tab').forEach(button => {
+        button.classList.remove('active');
+      });
+      
+      // Afficher l'onglet sélectionné
+      document.getElementById(`${tabName}-tab`).style.display = 'block';
+      
+      // Activer le bouton correspondant
+      event.currentTarget.classList.add('active');
+    }
+
+    // Sélection de couleur
+    function selectColor(color) {
+      document.querySelectorAll('.color-option').forEach(option => {
+        option.classList.remove('active');
+      });
+      event.currentTarget.classList.add('active');
+      
+      // Changer la couleur d'accent (exemple)
+      document.documentElement.style.setProperty('--primary', color);
+    }
+
+    // Sélection de qualité
+    function selectQuality(quality) {
+      document.querySelectorAll('.quality-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.currentTarget.classList.add('active');
+    }
+
+    // Sauvegarde des paramètres
+    function saveSettings() {
+      const notification = document.getElementById('saveNotification');
+      
+      // Simuler la sauvegarde
+      notification.classList.add('show');
+      
+      // Masquer la notification après 3 secondes
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3000);
+      
+      // Ici, vous pourriez envoyer les données au serveur
+      console.log('Paramètres sauvegardés');
+    }
+
+    // Charger les paramètres sauvegardés
+    function loadSettings() {
+      // Charger depuis localStorage ou serveur
+      const savedSettings = localStorage.getItem('streamflix_settings');
+      if (savedSettings) {
+        const settings = JSON.parse(savedSettings);
+        // Appliquer les paramètres...
+      }
+    }
+
+    // Initialisation
+    document.addEventListener('DOMContentLoaded', () => {
+      loadSettings();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>StreamFlix | Lecture</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styles spécifiques au lecteur vidéo pour qu'il soit propre */
+        body {
+            background-color: #141414;
+            color: white;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .player-container {
+            max-width: 1200px;
+            margin: 100px auto 40px;
+            padding: 0 20px;
+        }
+
+        /* Cadre vidéo responsive (16:9) */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* Ratio 16:9 */
+            height: 0;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            margin-top: 25px;
+            background: #1f1f1f;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .video-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .video-meta {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .rating-badge {
+            background-color: #e50914;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .video-desc {
+            line-height: 1.6;
+            color: #ccc;
+            font-size: 1.1rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .back-btn:hover {
+            color: #e50914;
+        }
+
+        .back-btn i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="home.html" class="logo">
+            <i class="fas fa-film"></i> StreamFlix
+        </a>
+    </header>
+
+    <div class="player-container">
+        <a href="javascript:history.back()" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Retour
+        </a>
+
+        <div class="video-wrapper">
+            <iframe id="videoPlayer" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-info">
+            <h1 class="video-title" id="videoTitle">Chargement...</h1>
+            
+            <div class="video-meta">
+                <span class="rating-badge" id="videoRating">Wait</span>
+                <span>HD</span>
+                <span>CC</span>
+            </div>
+            
+            <p class="video-desc" id="videoDesc">
+                Description du film en cours de chargement...
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // --- BASE DE DONNÉES UNIFIÉE (Tous les films et séries ici) ---
+        const moviesDB = {
+            // === FILMS DE L'ACCUEIL ===
+            'hailmary': {
+                title: "Projet Dernière Chance",
+                src: "https://www.youtube.com/embed/Im7iKhQ56bc?autoplay=1",
+                desc: "Ryland Grace est le seul survivant d'une mission désespérée. S'il échoue, l'humanité périra.",
+                rating: "9.8"
+            },
+            'raya': {
+                title: "Raya et le Dernier Dragon",
+                src: "https://www.youtube.com/embed/1VIZ89FEjYI?autoplay=1",
+                desc: "Dans le royaume de Kumandra, Raya part à la recherche du dernier dragon pour restaurer la paix.",
+                rating: "7.3"
+            },
+            'avengers': { // C'est Endgame (Accueil)
+                title: "Avengers: Endgame",
+                src: "https://www.youtube.com/embed/eOrNdBpGMv8?autoplay=1",
+                desc: "Les Avengers restants doivent trouver un moyen de ramener leurs alliés vaincus pour une confrontation épique avec Thanos.",
+                rating: "8.4"
+            },
+            'avatar2': {
+                title: "Avatar : La Voie de l'eau",
+                src: "https://www.youtube.com/embed/d9MyqF3bPZQ?autoplay=1",
+                desc: "Jake Sully et Neytiri doivent quitter leur foyer et explorer les régions de Pandora lorsqu'une ancienne menace refait surface.",
+                rating: "7.6"
+            },
+            'batman': {
+                title: "The Batman",
+                src: "https://www.youtube.com/embed/mqqft2x_Aa4?autoplay=1",
+                desc: "Batman s'aventure dans la pègre de Gotham City lorsqu'un tueur sadique laisse derrière lui une traînée d'indices cryptiques.",
+                rating: "7.8"
+            },
+            'blackpanther': {
+                title: "Black Panther: Wakanda Forever",
+                src: "https://www.youtube.com/embed/_Z3QKkl1WyM?autoplay=1",
+                desc: "La reine Ramonda et Shuri luttent pour protéger leur nation des puissances mondiales après la mort du roi T'Challa.",
+                rating: "6.7"
+            },
+            'eeaao': {
+                title: "Everything Everywhere All at Once",
+                src: "https://www.youtube.com/embed/wxN1T1uxQ2g?autoplay=1",
+                desc: "Une rupture interdimensionnelle bouleverse la réalité et une héroïne inattendue doit canaliser ses nouveaux pouvoirs.",
+                rating: "7.8"
+            },
+            'mario': {
+                title: "Super Mario Bros. le film",
+                src: "https://www.youtube.com/embed/TnGl01FkMMo?autoplay=1",
+                desc: "Mario voyage à travers le royaume Champignon avec la princesse Peach pour retrouver son frère Luigi.",
+                rating: "7.0"
+            },
+            'oppenheimer': {
+                title: "Oppenheimer",
+                src: "https://www.youtube.com/embed/uYPbbksJxIg?autoplay=1",
+                desc: "L'histoire du scientifique américain J. Robert Oppenheimer et de son rôle dans le développement de la bombe atomique.",
+                rating: "8.3"
+            },
+            'starwars': { // Star Wars 7 (Accueil)
+                title: "Star Wars: Le Réveil de la Force",
+                src: "https://www.youtube.com/embed/sGbxmsDFVnE?autoplay=1",
+                desc: "Des menaces surgissent des cendres de l'Empire. Rey et Finn rejoignent Han Solo dans une aventure désespérée.",
+                rating: "7.8"
+            },
+
+            // === PAGE FILMS (films.html) ===
+            'avatar': { // Avatar 1
+                title: "Avatar (2009)",
+                src: "https://www.youtube.com/embed/5PSNL1qE6VY?autoplay=1",
+                desc: "Un marine paraplégique envoyé sur la lune Pandora pour une mission unique se retrouve partagé entre ses ordres et la protection du monde qu'il considère comme le sien.",
+                rating: "7.9"
+            },
+            'titanic': {
+                title: "Titanic",
+                src: "https://www.youtube.com/embed/CHekzSiZjyY?autoplay=1",
+                desc: "Une aristocrate de dix-sept ans tombe amoureuse d'un artiste pauvre à bord du luxueux et infortuné R.M.S. Titanic.",
+                rating: "7.9"
+            },
+            'inception': {
+                title: "Inception",
+                src: "https://www.youtube.com/embed/YoHD9XEInc0?autoplay=1",
+                desc: "Un voleur qui s'approprie des secrets d'entreprise à travers l'utilisation de la technologie de partage de rêves reçoit la tâche inverse : implanter une idée.",
+                rating: "8.8"
+            },
+            'darkknight': {
+                title: "The Dark Knight",
+                src: "https://www.youtube.com/embed/EXeTwQWrcwY?autoplay=1",
+                desc: "Batman, le lieutenant Gordon et le procureur Harvey Dent s'allient pour démanteler la pègre de Gotham, mais ils se heurtent au Joker.",
+                rating: "9.0"
+            },
+            'interstellar': {
+                title: "Interstellar",
+                src: "https://www.youtube.com/embed/zSWdZVtXT7E?autoplay=1",
+                desc: "Une équipe d'explorateurs voyage à travers un trou de ver dans l'espace pour assurer la survie de l'humanité.",
+                rating: "8.7"
+            },
+            'matrix': {
+                title: "Matrix",
+                src: "https://www.youtube.com/embed/vKQi3bBA1y8?autoplay=1",
+                desc: "Un pirate informatique apprend de mystérieux rebelles la véritable nature de sa réalité et son rôle dans la guerre contre ses contrôleurs.",
+                rating: "8.7"
+            },
+            'lionking': {
+                title: "Le Roi Lion",
+                src: "https://www.youtube.com/embed/7TavVZMewpY?autoplay=1",
+                desc: "Le prince lion Simba et son père sont ciblés par son oncle aigri, qui veut monter sur le trône lui-même.",
+                rating: "8.5"
+            },
+            'joker': {
+                title: "Joker",
+                src: "https://www.youtube.com/embed/zAGVQLHvwOY?autoplay=1",
+                desc: "À Gotham City, le comédien de stand-up Arthur Fleck bascule dans la folie et devient le Joker.",
+                rating: "8.4"
+            },
+            'spiderman': {
+                title: "Spider-Man: No Way Home",
+                src: "https://www.youtube.com/embed/JfVOs4VSpmA?autoplay=1",
+                desc: "L'identité de Spider-Man est révélée. Il demande de l'aide au Docteur Strange, mais le sort tourne mal.",
+                rating: "8.2"
+            },
+
+            // === PAGE SÉRIES (series.html) ===
+            'strangerthings': {
+                title: "Stranger Things",
+                src: "https://www.youtube.com/embed/b9EkMc79ZSU?autoplay=1",
+                desc: "À Hawkins, en 1983, un jeune garçon disparaît. Ses amis, sa famille et le chef de la police plongent dans une enquête surnaturelle.",
+                rating: "8.7"
+            },
+            'breakingbad': {
+                title: "Breaking Bad",
+                src: "https://www.youtube.com/embed/HhesaQXLuRY?autoplay=1",
+                desc: "Un professeur de chimie atteint d'un cancer se lance dans la fabrication de méthamphétamine pour assurer l'avenir de sa famille.",
+                rating: "9.5"
+            },
+            'crown': {
+                title: "The Crown",
+                src: "https://www.youtube.com/embed/JWtnJjn6ng0?autoplay=1",
+                desc: "Cette série dramatique retrace les rivalités politiques et les liens romanesques du règne d'Élisabeth II.",
+                rating: "8.6"
+            },
+            'mandalorian': {
+                title: "The Mandalorian",
+                src: "https://www.youtube.com/embed/aOC8E8z_ifw?autoplay=1",
+                desc: "Les voyages d'un chasseur de primes solitaire dans les contrées extérieures de la galaxie, loin de l'autorité de la Nouvelle République.",
+                rating: "8.7"
+            },
+            'witcher': {
+                title: "The Witcher",
+                src: "https://www.youtube.com/embed/ndl1W4ltcmg?autoplay=1",
+                desc: "Geralt de Riv, un chasseur de monstres mutant, lutte pour trouver sa place dans un monde où les humains se révèlent souvent plus vicieux que les bêtes.",
+                rating: "8.0"
+            },
+            'office': {
+                title: "The Office (US)",
+                src: "https://www.youtube.com/embed/LHOtME2DL4g?autoplay=1",
+                desc: "Le quotidien d'un groupe d'employés de bureau dans une fabrique de papier en Pennsylvanie.",
+                rating: "9.0"
+            },
+            'friends': {
+                title: "Friends",
+                src: "https://www.youtube.com/embed/IEEbUzffzrk?autoplay=1",
+                desc: "Les péripéties de six amis vivant à Manhattan.",
+                rating: "8.9"
+            },
+            'gameofthrones': {
+                title: "Game of Thrones",
+                src: "https://www.youtube.com/embed/gcTkNV5Vg1E?autoplay=1",
+                desc: "Neuf nobles familles se battent pour le contrôle des terres mythiques de Westeros.",
+                rating: "9.2"
+            },
+            'squidgame': {
+                title: "Squid Game",
+                src: "https://www.youtube.com/embed/oqxAJKy0ii4?autoplay=1",
+                desc: "Des centaines de joueurs désargentés acceptent une étrange invitation à participer à des jeux pour enfants avec un enjeu mortel.",
+                rating: "8.0"
+            }
+        };
+
+        // --- LOGIQUE DE RÉCUPÉRATION ---
+        function loadVideo() {
+            // 1. Récupérer l'ID dans l'URL (?id=...)
+            const urlParams = new URLSearchParams(window.location.search);
+            const movieId = urlParams.get('id');
+
+            // 2. Trouver le film dans la base de données
+            const movie = moviesDB[movieId];
+
+            // 3. Afficher les infos
+            if (movie) {
+                document.getElementById('videoPlayer').src = movie.src;
+                document.getElementById('videoTitle').textContent = movie.title;
+                document.getElementById('videoDesc').textContent = movie.desc;
+                document.getElementById('videoRating').textContent = movie.rating + "/10";
+                
+                // Mettre à jour le titre de l'onglet du navigateur
+                document.title = "Lecture : " + movie.title + " | StreamFlix";
+            } else {
+                // Si l'ID n'existe pas ou est vide
+                document.getElementById('videoTitle').textContent = "Vidéo non trouvée";
+                document.getElementById('videoDesc').textContent = "Désolé, nous ne trouvons pas le film demandé. Veuillez retourner à l'accueil.";
+            }
+        }
+
+        // Lancer la fonction au chargement de la page
+        window.onload = loadVideo;
+    </script>
+</body>
+</html>
