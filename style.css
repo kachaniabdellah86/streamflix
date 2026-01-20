@@ -119,6 +119,7 @@ nav a.active::after {
       border-color: #e50914;
       transform: scale(1.05);
     }
+
 /* PAGE ANIMATION */
 .page {
   animation: fadeIn 0.6s ease;

@@ -1,30 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-   const filterButtons = document.querySelectorAll('.filter-btn');
-        const movieCards = document.querySelectorAll('.movie-card');
-
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // 1. Enlever la classe 'active' de tous les boutons
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                // 2. Ajouter la classe 'active' au bouton cliqué
-                button.classList.add('active');
-
-                // 3. Récupérer la catégorie choisie
-                const filterValue = button.getAttribute('data-filter');
-
-                // 4. Parcourir les films et les afficher/cacher
-                movieCards.forEach(card => {
-                    const cardCategory = card.getAttribute('data-category');
-
-                    if (filterValue === 'all' || filterValue === cardCategory) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-    });
+  
   /* =========================================
      1. LOADER
      ========================================= */
@@ -78,6 +53,33 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  /* =========================================
+     2.5. SYSTEME DE FILTRES (AJOUT)
+     ========================================= */
+  const mesBoutonsFiltres = document.querySelectorAll('.filter-btn');
+  const mesCartesFilms = document.querySelectorAll('.movie-card');
+
+  mesBoutonsFiltres.forEach(btn => {
+      btn.addEventListener('click', () => {
+          // 1. Enlever le rouge des autres boutons
+          mesBoutonsFiltres.forEach(b => b.classList.remove('active'));
+          // 2. Mettre le rouge sur celui cliqué
+          btn.classList.add('active');
+
+          // 3. Trier les films
+          const filtre = btn.getAttribute('data-filter');
+          
+          mesCartesFilms.forEach(film => {
+              const categorieFilm = film.getAttribute('data-category');
+              
+              if (filtre === 'all' || filtre === categorieFilm) {
+                  film.style.display = 'block';
+              } else {
+                  film.style.display = 'none';
+              }
+          });
+      });
+  });
   /* =========================================
      3. REDIRECTION DES CATÉGORIES
      ========================================= */
